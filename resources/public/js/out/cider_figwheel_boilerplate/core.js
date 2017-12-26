@@ -7,4 +7,4 @@ cljs.core.println.call(null,"testing testing cider 2 4");
 (new Date((2017),(10),(30),(2),(3),(4)));
 alert("yo");
 
-//# sourceMappingURL=core.js.map?rel=1514284451898
+//# sourceMappingURL=core.js.map?rel=1514286302735

@@ -6,11 +6,11 @@ This is my personal CIDER config. Clone and run =cider-jack-in= from an Emacs bu
 
 ** Quickstart
 1. =M-x cider-jack-in-clojurescript=
-2. 
+2. Visit [[http://localhost:3449/][http://localhost:3449/]]
+3. =M-x customize RET=
+   - From the customize menu, change the value of =cider-cljs-lein-repl= to /option 1: figwheel-sidcar/
 
-#+BEGIN_SRC clojurescript
-M-x 
-#+END_SRC
+That's it! More in-depth info about what's going on (and additional CIDER commands) below.
 
 ** Dependencies
 Major dependencies include CIDER, nREPL, [[https://github.com/cemerick/piggieback][Piggieback]] and [[https://github.com/bhauman/lein-figwheel/tree/master/sidecar][Figwheel Sidecar]]. If you add any dependencies or change one of the profiles in =project.clj=, run =M-x cider-restart= to inject those.
