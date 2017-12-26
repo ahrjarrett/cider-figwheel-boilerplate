@@ -4,6 +4,14 @@
 
 This is my personal CIDER config. Clone and run =cider-jack-in= from an Emacs buffer and CIDER takes care of all dependencies.
 
+** Quickstart
+1. =M-x cider-jack-in-clojurescript=
+2. 
+
+#+BEGIN_SRC clojurescript
+M-x 
+#+END_SRC
+
 ** Dependencies
 Major dependencies include CIDER, nREPL, [[https://github.com/cemerick/piggieback][Piggieback]] and [[https://github.com/bhauman/lein-figwheel/tree/master/sidecar][Figwheel Sidecar]]. If you add any dependencies or change one of the profiles in =project.clj=, run =M-x cider-restart= to inject those.
 
@@ -32,8 +40,26 @@ To get it running, go back to the Clojure CIDER nREPL by typing =:cljs/quit= and
 Now you have automatic reloading set up. Next, do:
 
 #+BEGIN_SRC clojurescript
-(fw/clj-repl)
+(fw/cljs-repl)
 #+END_SRC
+
+But that's not exactly what we want. We want to make this simpler. Fortunately, we can! Go ahead and =cider-quit= and now run: =M-x cider-jack-in-clojurescript=. That seems to do everything we just set up!
+
+Finally, switch to use figwheel-sidecar instead of Rhino. From within =M-x customize=, find this value:
+
+#+BEGIN_SRC clojurescript
+cider-cljs-lein-repl
+#+END_SRC
+
+Change the Value to =figwheel-sidecar= by going to "Show Value", then "Value Menu". Now if you open a buffer and evaluate =cider-cljs-lein-repl=, instead of a rhino value, you should see something like:
+
+#+BEGIN_SRC clojurescript
+"(do (require 'figwheel-sidecar.repl-api)
+     (figwheel-sidecar.repl-api/start-figwheel!)
+     (figwheel-sidecar.repl-api/cljs-repl))"
+#+END_SRC
+
+If you see that, you should be good to go!
 
 ** Notes
 - CIDER communicates with nREPL via "messages", which are essentially maps consisting of key/value pairs (such as ={:op "eval"}=). If something crashes or things start "misbehaving", check the =*nrepl-server <dirname>*= buffer for Java and other error messages.
