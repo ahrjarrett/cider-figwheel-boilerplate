@@ -1,0 +1,46 @@
+#+TITLE: CIDER & Figwheel Boilerplate
+#+AUTHOR: Andrew Jarrett
+#+EMAIL: ahrjarrett@gmail.com
+
+This is my personal CIDER config. Clone and run =cider-jack-in= from an Emacs buffer and CIDER takes care of all dependencies.
+
+** Dependencies
+Major dependencies include CIDER, nREPL, [[https://github.com/cemerick/piggieback][Piggieback]] and [[https://github.com/bhauman/lein-figwheel/tree/master/sidecar][Figwheel Sidecar]]. If you add any dependencies or change one of the profiles in =project.clj=, run =M-x cider-restart= to inject those.
+
+** REPL-Driven CLJS Development
+In the REPL, do:
+
+#+BEGIN_SRC clojurescript
+(require 'cemerick.piggieback)
+(require 'cljs.repl.rhino)
+(cemerick.piggieback/cljs-repl (cljs.repl.rhino/repl-env))
+#+END_SRC
+
+You should now see =cljs.user>= instead of =user>= in your REPL. That means you're ready to open any =.cljs= file and start working. Try =C-x C-e= after an s-expression to test that you're up and running.
+To quit the ClojureScript REPL and go back to Clojure-land, do =:cljs/quit=.
+
+** Figwheel
+What if you need to switch between frontend and backend though? Bouncing back and forth from cljs to clj REPLs will get annoying. Enter figwheel-sidecar.
+Originally, Figwheel was only available as a lein plugin. Figwheel Sidecar basically makes Figwheel available as a /library/.
+To get it running, go back to the Clojure CIDER nREPL by typing =:cljs/quit= and then do:
+
+#+BEGIN_SRC clojurescript
+(require '[figwheel-sidecar.repl-api :as fw])
+(fw/start-figwheel!)
+#+END_SRC
+
+Now you have automatic reloading set up. Next, do:
+
+#+BEGIN_SRC clojurescript
+(fw/clj-repl)
+#+END_SRC
+
+** Notes
+- CIDER communicates with nREPL via "messages", which are essentially maps consisting of key/value pairs (such as ={:op "eval"}=). If something crashes or things start "misbehaving", check the =*nrepl-server <dirname>*= buffer for Java and other error messages.
+- Also, to make cider-mode launch automatically when in clojure-mode, add the following to your emacs init file:
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'clojure-mode-hook 'cider-mode)
+#+END_SRC
+
+
