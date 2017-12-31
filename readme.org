@@ -8,7 +8,7 @@ This is my personal CIDER config. Clone and run =cider-jack-in= from an Emacs bu
 1. =M-x cider-jack-in-clojurescript=
 2. Visit [[http://localhost:3449/][http://localhost:3449/]]
 3. =M-x customize RET=
-   - From the customize menu, change the value of =cider-cljs-lein-repl= to /option 1: figwheel-sidcar/
+   - From the customize menu, change the value of =cider-cljs-lein-repl= to /option 1: figwheel-sidecar/
 
 That's it! More in-depth info about what's going on (and additional CIDER commands) below.
 
